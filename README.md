@@ -15,7 +15,7 @@ Hi, I'm Kunda Chudanath — a Robotics and Artificial Intelligence student at Am
 
 ## Contact
 
-- 📧 chudanathkunda1633@gmail.com
+- 📧 kundachudanath9@gmail.com
 - 💼 [LinkedIn](https://linkedin.com/in/chudanath-kunda)
 - 📍 Bengaluru, India
 
