@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kunda Chudanath — Robotics &amp; AI Engineer</title>
+<meta name="description" content="Portfolio of Kunda Chudanath — Robotics & Artificial Intelligence student specializing in industrial automation, embedded systems and IoT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f2f1ee;
+    --surface:#ffffff;
+    --border:#e2e0d9;
+    --text:#26282c;
+    --text-muted:#6b6e73;
+    --steel:#2d323b;
+    --steel-deep:#1a1d22;
+    --steel-mid:#22262d;
+    --safety:#dca239;
+    --safety-deep:#b8822a;
+    --safety-glow:rgba(220,162,57,0.18);
+    --teal:#6b6e73;
+    --teal-glow:rgba(107,110,115,0.1);
+    --cardboard:#c98a4b;
+    --cardboard-deep:#8a5a2b;
+    --head:'Barlow Condensed', sans-serif;
+    --sans:'Inter', sans-serif;
+    --grid-line:rgba(38,40,44,0.03);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size:38px 38px;
+    color:var(--text);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--safety);color:var(--steel-deep);}
+  svg{display:block;}
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+  }
+
+  .reveal{opacity:1;}
+  .reveal.pre-reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.pre-reveal.in-view{opacity:1;transform:translateY(0);}
+
+  /* ================= INTRO ================= */
+  .intro{
+    position:relative;
+    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    text-align:center;
+    padding:24px;
+    border-bottom:1px solid var(--border);
+  }
+  .intro-bg{position:absolute;inset:0;z-index:0;opacity:0.5;}
+  .intro-content{position:relative;z-index:2;}
+
+  /* ---- AMR illustration (single rigid unit, safe animation only) ---- */
+  .amr-stage{
+    position:relative;
+    width:100%;
+    max-width:560px;
+    height:280px;
+    margin:0 auto 20px;
+    z-index:2;
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.1s;
+  }
+  .amr-stage svg{width:100%;height:100%;overflow:visible;}
+  .amr-unit{animation:amrRoll 5s ease-in-out infinite;}
+  .amr-wheel{transform-box:fill-box;transform-origin:center;animation:wheelSpin 2.6s linear infinite;}
+  .floor-dash{stroke-dasharray:10 8;animation:dashMove 1.6s linear infinite;}
+  .sensor-blink{animation:sensorBlink 2.2s ease-in-out infinite;}
+
+  @keyframes amrRoll{
+    0%,100%{transform:translateX(-14px);}
+    50%{transform:translateX(14px);}
+  }
+  @keyframes wheelSpin{to{transform:rotate(360deg);}}
+  @keyframes sensorBlink{0%,100%{opacity:0.5;}50%{opacity:1;}}
+
+  .intro-eyebrow{
+    font-family:var(--sans);
+    font-size:0.78rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--safety-deep);
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.2s;
+    margin-bottom:22px;
+  }
+  .intro h1{
+    font-family:var(--head);
+    font-weight:800;
+    font-size:clamp(2.6rem,8vw,5.6rem);
+    line-height:1.02;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    color:var(--steel);
+  }
+  .intro h1 .line{display:block;overflow:hidden;}
+  .intro h1 .line span{display:inline-block;opacity:0;transform:translateY(100%);animation:riseIn .7s cubic-bezier(.2,.8,.2,1) forwards;}
+  .intro h1 .accent{color:var(--safety-deep);}
+  .intro p.sub{
+    margin-top:26px;
+    max-width:560px;
+    color:var(--text-muted);
+    font-size:1.05rem;
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+    animation-delay:1.5s;
+  }
+  .intro-cta{
+    margin-top:40px;
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+    animation-delay:1.8s;
+  }
+  .intro-cta a{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:0.88rem;
+    letter-spacing:0.03em;
+    color:#ffffff;
+    background:var(--steel);
+    padding:14px 30px;
+    border-radius:3px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:background .2s, transform .2s;
+  }
+  .intro-cta a:hover{background:var(--steel-deep);transform:translateY(-2px);}
+
+  @keyframes riseIn{to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes dashMove{to{stroke-dashoffset:-200;}}
+
+  /* ================= NAV ================= */
+  nav{
+    position:sticky;
+    top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(244,243,239,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{max-width:1080px;margin:0 auto;padding:18px 28px;display:flex;justify-content:space-between;align-items:center;}
+  .nav-logo{font-family:var(--head);font-weight:700;font-size:1.25rem;letter-spacing:0.02em;text-transform:uppercase;}
+  .nav-logo span{color:var(--safety-deep);}
+  .nav-links{display:flex;gap:30px;list-style:none;font-size:0.85rem;}
+  .nav-links a{color:var(--text-muted);font-weight:600;transition:color .2s;}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--steel);}
+  .nav-toggle{display:none;background:none;border:1px solid var(--border);color:var(--text);font-size:0.8rem;padding:7px 12px;border-radius:4px;}
+  @media (max-width:760px){
+    .nav-links{position:absolute;top:100%;left:0;right:0;background:var(--bg);flex-direction:column;padding:18px 28px 26px;display:none;border-bottom:1px solid var(--border);gap:18px;}
+    .nav-links.open{display:flex;}
+    .nav-toggle{display:block;}
+  }
+
+  section{max-width:1080px;margin:0 auto;padding:96px 28px 40px;scroll-margin-top:70px;}
+
+  .sec-head{margin-bottom:40px;display:flex;align-items:center;gap:16px;}
+  .sec-icon{width:40px;height:40px;border-radius:6px;background:var(--steel);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}
+  .sec-icon::before,.sec-icon::after{content:"";position:absolute;width:8px;height:8px;border:1.5px solid var(--safety);opacity:0.8;}
+  .sec-icon::before{top:-5px;left:-5px;border-right:none;border-bottom:none;}
+  .sec-icon::after{bottom:-5px;right:-5px;border-left:none;border-top:none;}
+  .sec-icon svg{width:20px;height:20px;stroke:var(--safety);}
+  .sec-head-text .sec-num{font-family:var(--sans);font-size:0.72rem;color:var(--safety-deep);font-weight:700;letter-spacing:0.12em;display:block;margin-bottom:2px;text-transform:uppercase;}
+  .sec-head h2{font-family:var(--head);font-size:clamp(1.8rem,3.4vw,2.3rem);font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:0.01em;}
+
+  /* Profile */
+  .profile-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;}
+  .profile-grid p{color:var(--text-muted);font-size:1.02rem;margin-bottom:16px;}
+  .profile-grid strong{color:var(--text);}
+  .info-card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--safety);border-radius:4px;padding:26px;box-shadow:0 1px 3px rgba(28,29,31,0.05);transition:box-shadow .25s ease,transform .25s ease;}
+  .info-card:hover{box-shadow:0 16px 34px rgba(28,29,31,0.1),0 0 0 1px var(--safety-glow);transform:translateY(-2px);}
+  .info-card dl{display:grid;grid-template-columns:auto 1fr;gap:13px 16px;font-size:0.92rem;}
+  .info-card dt{font-weight:700;color:var(--steel);font-size:0.76rem;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;}
+  .info-card dd{color:var(--text-muted);}
+  @media (max-width:800px){.profile-grid{grid-template-columns:1fr;}}
+
+  /* Skills */
+  .skills-tray{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;}
+  .skill-block{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:22px;box-shadow:0 1px 3px rgba(28,29,31,0.05);transition:box-shadow .25s ease,transform .25s ease;}
+  .skill-block:hover{box-shadow:0 16px 34px rgba(28,29,31,0.1),0 0 0 1px var(--safety-glow);transform:translateY(-2px);}
+  .skill-block h3{font-family:var(--head);font-size:1.05rem;color:var(--steel);letter-spacing:0.02em;margin-bottom:14px;text-transform:uppercase;font-weight:700;border-bottom:2px solid var(--safety);display:inline-block;padding-bottom:4px;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .chip{font-size:0.82rem;background:var(--bg);border:1px solid var(--border);padding:6px 12px;border-radius:3px;color:var(--text);font-weight:500;}
+
+  /* Clickable common */
+  .clickable{cursor:pointer;}
+  .clickable:focus-visible{outline:2px solid var(--safety);outline-offset:3px;}
+  .view-more{margin-top:14px;font-size:0.8rem;font-weight:700;color:var(--safety-deep);display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:0.03em;}
+  .view-more svg{width:13px;height:13px;stroke:var(--safety-deep);transition:transform .2s;}
+  .clickable:hover .view-more svg{transform:translateX(3px);}
+  .clickable:hover{border-color:var(--safety) !important;}
+
+  /* Experience */
+  .timeline{position:relative;padding-left:30px;border-left:3px solid var(--border);}
+  .timeline-item{position:relative;margin-bottom:18px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 22px;transition:border-color .2s,transform .2s,box-shadow .2s;box-shadow:0 1px 3px rgba(28,29,31,0.05);}
+  .timeline-item:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(28,29,31,0.1),0 0 0 1px var(--safety-glow);}
+  .timeline-item::before{content:"";position:absolute;left:-37.5px;top:26px;width:12px;height:12px;background:var(--safety);box-shadow:0 0 0 4px var(--bg);transform:rotate(45deg);}
+  .timeline-item .role-line{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-bottom:8px;}
+  .timeline-item h3{font-family:var(--head);font-size:1.2rem;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:0.01em;}
+  .timeline-item .period{font-size:0.78rem;color:var(--safety-deep);font-weight:700;white-space:nowrap;text-transform:uppercase;letter-spacing:0.03em;}
+  .timeline-item .role-summary{color:var(--text-muted);font-size:0.94rem;}
+
+  /* Projects */
+  .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px;}
+  .project-card{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--steel);border-radius:6px;padding:26px;transition:border-color .25s,transform .25s,box-shadow .25s;box-shadow:0 1px 3px rgba(28,29,31,0.05);}
+  .project-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(28,29,31,0.14),0 0 0 1px var(--safety-glow);border-top-color:var(--safety);}
+  .project-id{font-size:0.74rem;color:var(--safety-deep);letter-spacing:0.06em;margin-bottom:10px;display:block;text-transform:uppercase;font-weight:700;}
+  .project-card h3{font-family:var(--head);font-size:1.28rem;margin-bottom:10px;color:var(--steel);text-transform:uppercase;font-weight:700;}
+  .project-card p{color:var(--text-muted);font-size:0.93rem;}
+
+  /* Publications */
+  .pub-list{list-style:none;}
+  .pub-item{padding:20px 22px;margin-bottom:14px;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:4px;display:flex;gap:18px;align-items:baseline;transition:transform .2s,box-shadow .2s;}
+  .pub-item:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(28,29,31,0.09),0 0 0 1px var(--teal-glow);}
+  .pub-marker{font-size:0.78rem;color:var(--teal);font-weight:700;flex-shrink:0;text-transform:uppercase;letter-spacing:0.03em;}
+  .pub-item p{color:var(--text-muted);font-size:0.92rem;}
+  .pub-item strong{color:var(--text);font-weight:700;font-family:var(--head);font-size:1.05rem;text-transform:none;}
+
+  /* Contact */
+  .contact-panel{background:var(--steel-deep);border-radius:8px;padding:56px 40px;text-align:center;color:#fff;position:relative;overflow:hidden;}
+  .contact-panel::before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle, rgba(39,87,214,0.25), transparent 70%);top:-150px;right:-100px;}
+  .contact-panel::after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle, rgba(15,118,110,0.28), transparent 70%);bottom:-140px;left:-90px;}
+  .contact-panel h2{font-family:var(--head);font-size:clamp(1.9rem,3.6vw,2.5rem);margin-bottom:16px;font-weight:700;text-transform:uppercase;position:relative;}
+  .contact-panel p{color:#b7bcc4;max-width:480px;margin:0 auto 30px;position:relative;}
+  .contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;position:relative;}
+  .btn{font-size:0.86rem;font-weight:700;padding:13px 24px;border-radius:3px;display:inline-flex;align-items:center;gap:8px;transition:transform .15s,background .15s,border-color .15s,color .15s;border:1px solid var(--safety);text-transform:uppercase;letter-spacing:0.03em;cursor:pointer;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--safety);color:var(--steel-deep);}
+  .btn-primary:hover{background:#9aa1ab;box-shadow:0 8px 22px var(--safety-glow);}
+  .btn-ghost{color:#fff;border-color:rgba(255,255,255,0.35);}
+  .btn-ghost:hover{background:rgba(255,255,255,0.1);}
+
+  footer{text-align:center;padding:36px 28px 52px;font-size:0.8rem;color:var(--text-muted);}
+
+  /* Modal */
+  .modal-overlay{position:fixed;inset:0;background:rgba(18,22,27,0.7);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity .25s ease;padding:24px;}
+  .modal-overlay.open{opacity:1;pointer-events:auto;}
+  .modal-card{background:var(--surface);border-top:4px solid var(--safety);max-width:600px;width:100%;border-radius:8px;padding:40px;position:relative;transform:translateY(18px) scale(0.98);transition:transform .25s ease;box-shadow:0 30px 70px rgba(0,0,0,0.4);max-height:82vh;overflow-y:auto;}
+  .modal-overlay.open .modal-card{transform:translateY(0) scale(1);}
+  .modal-close{position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .15s;}
+  .modal-close:hover{border-color:var(--safety);}
+  .modal-close svg{width:15px;height:15px;stroke:var(--text);}
+  .modal-tag{font-size:0.74rem;color:var(--safety-deep);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:12px;}
+  .modal-card h3{font-family:var(--head);font-size:1.7rem;color:var(--steel);margin-bottom:6px;padding-right:30px;text-transform:uppercase;font-weight:700;}
+  .modal-period{font-size:0.82rem;color:var(--text-muted);margin-bottom:22px;font-weight:600;}
+  .modal-card h4{font-size:0.74rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--safety-deep);margin:20px 0 8px;font-weight:700;}
+  .modal-card h4:first-of-type{margin-top:0;}
+  .modal-card p{color:var(--text-muted);font-size:0.95rem;line-height:1.7;}
+  .modal-chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .modal-chip{font-size:0.8rem;background:var(--bg);border:1px solid var(--border);padding:5px 11px;border-radius:3px;color:var(--text);font-weight:500;}
+</style>
+</head>
+<body>
+
+<!-- ===================== INTRO ===================== -->
+<div class="intro" id="intro">
+  <div class="amr-stage">
+    <svg viewBox="0 0 560 280" aria-hidden="true">
+      <!-- warehouse floor -->
+      <rect x="0" y="228" width="560" height="52" fill="#e9e7e2"/>
+      <line class="floor-dash" x1="0" y1="230" x2="560" y2="230" stroke="var(--safety)" stroke-width="2" opacity="0.6"/>
+
+      <!-- simplified pallet racking, background context -->
+      <g opacity="0.35" stroke="#9a9d9f" stroke-width="2" fill="none">
+        <line x1="470" y1="70" x2="470" y2="228"/>
+        <line x1="540" y1="70" x2="540" y2="228"/>
+        <line x1="470" y1="110" x2="540" y2="110"/>
+        <line x1="470" y1="150" x2="540" y2="150"/>
+        <line x1="470" y1="190" x2="540" y2="190"/>
+      </g>
+      <rect x="478" y="118" width="26" height="22" fill="#c98a4b" opacity="0.35"/>
+      <rect x="508" y="158" width="26" height="22" fill="#c98a4b" opacity="0.35"/>
+
+      <!-- AMR robot: single rigid group, gently rolls left/right -->
+      <g class="amr-unit">
+        <!-- shadow -->
+        <ellipse cx="230" cy="226" rx="95" ry="8" fill="#000000" opacity="0.08"/>
+
+        <!-- base chassis -->
+        <rect x="140" y="178" width="180" height="34" rx="6" fill="var(--steel)" stroke="var(--steel-deep)" stroke-width="1.5"/>
+
+        <!-- safety stripe on chassis edge -->
+        <rect x="146" y="204" width="168" height="6" rx="2" fill="var(--safety)"/>
+
+        <!-- wheels -->
+        <g class="amr-wheel" style="animation-delay:0s">
+          <circle cx="172" cy="214" r="14" fill="var(--steel-deep)" stroke="#9a9d9f" stroke-width="2"/>
+          <line x1="172" y1="203" x2="172" y2="225" stroke="#9a9d9f" stroke-width="1.5"/>
+          <line x1="161" y1="214" x2="183" y2="214" stroke="#9a9d9f" stroke-width="1.5"/>
+        </g>
+        <g class="amr-wheel" style="animation-delay:-0.4s">
+          <circle cx="288" cy="214" r="14" fill="var(--steel-deep)" stroke="#9a9d9f" stroke-width="2"/>
+          <line x1="288" y1="203" x2="288" y2="225" stroke="#9a9d9f" stroke-width="1.5"/>
+          <line x1="277" y1="214" x2="299" y2="214" stroke="#9a9d9f" stroke-width="1.5"/>
+        </g>
+
+        <!-- top deck -->
+        <rect x="150" y="160" width="160" height="22" rx="4" fill="#c9ccd1" stroke="#9a9d9f" stroke-width="1.5"/>
+
+        <!-- sensor puck -->
+        <circle class="sensor-blink" cx="165" cy="158" r="7" fill="var(--safety)" stroke="var(--steel-deep)" stroke-width="1.5"/>
+
+        <!-- carried box -->
+        <rect x="205" y="112" width="60" height="50" rx="2" fill="var(--cardboard)" stroke="var(--cardboard-deep)" stroke-width="1.5"/>
+        <line x1="205" y1="132" x2="265" y2="132" stroke="var(--cardboard-deep)" stroke-width="1.5"/>
+        <line x1="235" y1="112" x2="235" y2="162" stroke="var(--cardboard-deep)" stroke-width="1.5"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="intro-content">
+    <div class="intro-eyebrow">Robotics &amp; AI Engineer</div>
+    <h1>
+      <span class="line"><span style="animation-delay:.3s">Kunda</span></span>
+      <span class="line"><span class="accent" style="animation-delay:.55s">Chudanath</span></span>
+    </h1>
+    <p class="sub">Building intelligent systems across industrial automation, embedded engineering, and robotics.</p>
+    <div class="intro-cta">
+      <a href="#profile">View Portfolio ↓</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MAIN SITE ===================== -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Kunda<span>.</span>Chudanath</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">Menu</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="profile">
+  <div class="sec-head">
+    <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="sec-head-text"><span class="sec-num">01 — Profile</span><h2>About</h2></div>
+  </div>
+  <div class="profile-grid">
+    <div>
+      <p>Robotics and Artificial Intelligence engineer seeking a full-time role in <strong>Manufacturing Engineering</strong> and <strong>Robotic Automation</strong>, with a focus on Pre-Dispatch Inspection (PDI) systems, shop floor implementation, and automation testing &amp; validation.</p>
+      <p>Hands-on experience across industrial automation, embedded systems, IoT, and applied machine learning — from ignition control circuits to fuzzy-logic navigation.</p>
+    </div>
+    <div class="info-card reveal">
+      <dl>
+        <dt>Degree</dt><dd>B.Tech, Robotics &amp; AI Engineering</dd>
+        <dt>Institute</dt><dd>Amrita Vishwa Vidyapeetham, Bengaluru</dd>
+        <dt>Duration</dt><dd>07/2023 — Present</dd>
+        <dt>CGPA</dt><dd>6.31 / 10</dd>
+        <dt>Intermediate</dt><dd>Susheela Memorial Junior College — 86% (MPC)</dd>
+        <dt>Secondary</dt><dd>Millennium Talent High School — CGPA 10/10</dd>
+        <dt>Location</dt><dd>Bengaluru, India</dd>
+        <dt>Email</dt><dd>kundachudanath9@gmail.com</dd>
+        <dt>Phone</dt><dd>+91 99494 26531</dd>
+        <dt>LinkedIn</dt><dd>chudanath-kunda</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-head">
+    <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+    <div class="sec-head-text"><span class="sec-num">02 — Skills</span><h2>Technical Skills</h2></div>
+  </div>
+  <div class="skills-tray">
+    <div class="skill-block reveal">
+      <h3>Tools &amp; Simulations</h3>
+      <div class="chip-row">
+        <span class="chip">Fusion 360</span><span class="chip">MATLAB</span><span class="chip">AutoCAD</span>
+        <span class="chip">Proteus</span><span class="chip">Power BI</span><span class="chip">Python</span><span class="chip">FlexSim</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <h3>Technical Skills</h3>
+      <div class="chip-row">
+        <span class="chip">Sensor Integration</span><span class="chip">Manufacturing Process Understanding</span><span class="chip">Industrial Automation</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <h3>Soft Skills</h3>
+      <div class="chip-row">
+        <span class="chip">Leadership</span><span class="chip">Decision Making</span><span class="chip">Creativity</span><span class="chip">Teamwork</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-head">
+    <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+    <div class="sec-head-text"><span class="sec-num">03 — Experience</span><h2>Work &amp; Involvement</h2></div>
+  </div>
+  <div class="timeline" id="experienceList"></div>
+</section>
+
+<section id="projects">
+  <div class="sec-head">
+    <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+    <div class="sec-head-text"><span class="sec-num">04 — Projects</span></div>
+  </div>
+  <div class="project-grid" id="projectGrid"></div>
+</section>
+
+<section id="publications">
+  <div class="sec-head">
+    <div class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+    <div class="sec-head-text"><span class="sec-num">05 — Publications</span><h2>Publications</h2></div>
+  </div>
+  <ul class="pub-list" id="pubList"></ul>
+</section>
+
+<section id="contact">
+  <div class="contact-panel">
+    <h2>Let's build something.</h2>
+    <p>Open to Robotics, Automation, Manufacturing Engineering, and Embedded Systems roles. Reach out directly or connect on LinkedIn.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:kundachudanath9@gmail.com">Email Me</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/chudanath-kunda" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+</section>
+
+<footer>Kunda Chudanath — Bengaluru, India — <span id="year"></span></footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+const arrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+const experience = [
+  {
+    org: "JIDO — Industrial Automation Club",
+    role: "Technical and Management Lead",
+    period: "1 Year",
+    summary: "Contributing to workshops and team coordination.",
+    brief: "As Technical and Management Lead, I contribute to the club's hands-on automation workshops and help coordinate the team behind them. The role blends technical involvement — understanding the automation concepts well enough to support workshop delivery — with organizational work, keeping the team and sessions running smoothly.",
+    points: ["Contributed to planning and running industrial automation workshops", "Coordinated with team members across sessions and events"],
+    tools: ["Industrial Automation", "Team Coordination", "Workshop Facilitation"]
+  },
+  {
+    org: "NITTTR Chennai",
+    role: "Summer Intern",
+    period: "Jun 2026 · 1 Month",
+    summary: "Assisted in robotics/automation training and laboratory activities.",
+    brief: "A short, focused internship at NITTTR Chennai exposing me to how robotics and automation training is structured and delivered in a formal lab environment. I worked alongside lab staff on hands-on training activities and got a close look at real industrial automation workflows — a useful contrast to classroom-only learning.",
+    points: ["Assisted with robotics and automation lab training sessions", "Observed and supported structured industrial automation workflows", "Gained practical exposure to lab equipment and safety protocols"],
+    tools: ["Robotics Training", "Lab Automation", "Industrial Workflows"]
+  },
+  {
+    org: "iTSikhwal",
+    role: "Summer Intern",
+    period: "Mar — May 2026 · 6 Weeks",
+    summary: "Developed and optimized 3D assets for XR applications.",
+    brief: "A 6-week internship focused on 3D content pipelines for XR (extended reality) applications. I built and optimized 3D assets for real-time rendering, worked with the GLB format for cross-platform asset delivery, and collaborated with the wider team to make sure assets met performance and quality requirements for XR use cases.",
+    points: ["Created and optimized 3D models for use in XR applications", "Handled GLB asset integration for real-time rendering pipelines", "Collaborated with the team on asset quality and delivery timelines"],
+    tools: ["3D Modeling", "XR / GLB Assets", "Fusion 360"]
+  },
+  {
+    org: "Prakalp, 3D Printing Workshop & Drone Workshop",
+    role: "Volunteer",
+    period: "",
+    summary: "Assisted in event organization and technical demonstrations.",
+    brief: "Volunteered across multiple technical events — Prakalp, a 3D printing workshop, and a drone workshop — helping with event organization and running technical demonstrations for attendees. This gave hands-on exposure to 3D printing and drone systems while building event coordination experience.",
+    points: ["Assisted in organizing and running technical demonstrations", "Supported event logistics for 3D printing and drone workshops"],
+    tools: ["3D Printing", "Drone Systems", "Event Organization"]
+  },
+  {
+    org: "Interdepartmental Competition",
+    role: "Runner-Up — Yoga",
+    period: "",
+    summary: "Promoted wellness and teamwork through interdepartmental competition.",
+    brief: "Competed in and placed as Runner-Up in an interdepartmental yoga competition — a wellness-focused activity that also emphasized teamwork and cross-department collaboration outside of technical coursework.",
+    points: ["Placed Runner-Up in an interdepartmental yoga competition", "Promoted wellness and teamwork through participation"],
+    tools: ["Teamwork", "Wellness", "Discipline"]
+  }
+];
+
+const projects = [
+  {
+    tag: "Applied ML · Nov–Dec 2024",
+    title: "Aesthetic of Colour: ML Palette Generation & Classification",
+    summary: "Machine learning model that generates harmonious color palettes and classifies them by aesthetic quality.",
+    brief: "A machine learning project exploring how color combinations can be generated and evaluated for aesthetic quality. The core of the work was a model that generates harmonious color palettes and a classification approach for judging aesthetic appeal — later formalized and presented as a research paper at INCOFT 2025.",
+    points: ["Developed a machine learning model to generate harmonious color palettes", "Built a classification approach for evaluating aesthetic quality of palettes", "Presented findings as a research paper at INCOFT 2025"],
+    tools: ["Python", "Machine Learning", "Data Analysis"]
+  },
+  {
+    tag: "Embedded Systems / IoT · Nov–Dec 2024",
+    title: "Smart Helmet",
+    summary: "IoT-based ignition control system integrating Arduino and Bluetooth modules, with full functional testing.",
+    brief: "A safety-first IoT/embedded system that ties a motorcycle's ignition to helmet-wear detection over Bluetooth. Beyond the initial build, a significant part of the work was functional testing and performance monitoring of the wireless communication link, to validate that the operational process was reliable — not just working in a single demo run.",
+    points: ["Designed and implemented an IoT-based ignition control system integrating Arduino and Bluetooth modules", "Conducted functional testing and performance monitoring of wireless communication", "Validated the full operational process end-to-end"],
+    tools: ["Arduino", "Bluetooth", "IoT", "Sensor Integration", "Functional Testing"]
+  },
+  {
+    tag: "Robotics / Navigation · Jul–Dec 2025",
+    title: "Terrain Aware Wheelchair Navigation Using Hybrid Fuzzy A* Algorithm",
+    summary: "Autonomous outdoor navigation system combining a Hybrid Fuzzy Logic Controller with A* pathfinding to dynamically bypass hazards.",
+    brief: "A robotics navigation project addressing a real accessibility problem: standard path-planning algorithms assume flat, uniform terrain, which doesn't hold outdoors. This system engineers an autonomous navigation pipeline that combines a Hybrid Fuzzy Logic Controller with the A* pathfinding algorithm, processing multi-sensor data arrays in real time to map terrain irregularities and dynamically adjust the path's heuristic cost functions. Presented as a research paper at ICRAME 2026.",
+    points: ["Engineered an autonomous outdoor navigation system integrating a Hybrid Fuzzy Logic Controller with the A* pathfinding algorithm to dynamically bypass hazards", "Processed multi-sensor data arrays in real time to map terrain irregularities", "Dynamically adjusted path heuristic cost functions based on live terrain data", "Presented findings as a research paper at ICRAME 2026"],
+    tools: ["Python", "MATLAB", "Fuzzy Logic", "A* Pathfinding", "Sensor Integration"]
+  }
+];
+
+const publications = [
+  {
+    tag: "ICRAME 2026",
+    title: "Terrain Aware Wheelchair Navigation in Outdoor Spaces Using Hybrid Fuzzy A* Algorithm",
+    period: "Presented at ICRAME 2026",
+    brief: "This paper presents a navigation approach for outdoor wheelchair mobility that accounts for real-world terrain variation. By hybridizing the A* search algorithm with fuzzy logic-based terrain evaluation, the system plans routes that balance distance with traversability — factoring in slope, surface texture, and obstacle density rather than treating all paths as equally viable.",
+    points: ["Proposed a hybrid Fuzzy A* algorithm for outdoor path planning", "Incorporated terrain difficulty as a weighted factor in path cost", "Focused on accessibility and safety for wheelchair users in outdoor environments"],
+    tools: ["Path Planning", "Fuzzy Logic", "Robotics Navigation"]
+  },
+  {
+    tag: "INCOFT 2025",
+    title: "Aesthetics of Colours: A Machine Learning Approach of Palette Generation and Classification",
+    period: "Presented at INCOFT 2025",
+    brief: "This paper explores how machine learning can be used to both generate color palettes and classify them by aesthetic quality. The work sits at the intersection of design and applied ML — building a model capable of judging color harmony in a way that aligns with human aesthetic preference.",
+    points: ["Built a model for automated color palette generation", "Developed a classification method for evaluating aesthetic quality of palettes", "Explored applications for design tools and automated aesthetic evaluation"],
+    tools: ["Python", "Machine Learning", "Data Analysis"]
+  }
+];
+
+const expList = document.getElementById('experienceList');
+experience.forEach((item, i) => {
+  const el = document.createElement('div');
+  el.className = 'timeline-item clickable reveal';
+  el.tabIndex = 0;
+  el.setAttribute('role', 'button');
+  el.innerHTML = `<div class="role-line"><h3>${item.role} — ${item.org}</h3><span class="period">${item.period}</span></div><p class="role-summary">${item.summary}</p><span class="view-more">View details ${arrowSvg}</span>`;
+  const open = () => openModal('experience', i);
+  el.addEventListener('click', open);
+  el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  expList.appendChild(el);
+});
+
+const projGrid = document.getElementById('projectGrid');
+projects.forEach((item, i) => {
+  const el = document.createElement('div');
+  el.className = 'project-card clickable reveal';
+  el.tabIndex = 0;
+  el.setAttribute('role', 'button');
+  el.innerHTML = `<span class="project-id">${item.tag}</span><h3>${item.title}</h3><p>${item.summary}</p><span class="view-more">View details ${arrowSvg}</span>`;
+  const open = () => openModal('project', i);
+  el.addEventListener('click', open);
+  el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  projGrid.appendChild(el);
+});
+
+const pubList = document.getElementById('pubList');
+publications.forEach((item, i) => {
+  const el = document.createElement('li');
+  el.className = 'pub-item clickable reveal';
+  el.tabIndex = 0;
+  el.setAttribute('role', 'button');
+  el.innerHTML = `<span class="pub-marker">${item.tag}</span><div><p><strong>${item.title}</strong></p><span class="view-more">View details ${arrowSvg}</span></div>`;
+  const open = () => openModal('publication', i);
+  el.addEventListener('click', open);
+  el.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  pubList.appendChild(el);
+});
+
+const overlay = document.getElementById('modalOverlay');
+const modalBody = document.getElementById('modalBody');
+const modalClose = document.getElementById('modalClose');
+
+function openModal(type, index) {
+  let data, tag, title, period;
+  if (type === 'project') { data = projects[index]; tag = data.tag; title = data.title; period = ''; }
+  else if (type === 'publication') { data = publications[index]; tag = data.tag; title = data.title; period = `<div class="modal-period">${data.period}</div>`; }
+  else { data = experience[index]; tag = 'Experience'; title = `${data.role} — ${data.org}`; period = `<div class="modal-period">${data.period}</div>`; }
+
+  modalBody.innerHTML = `
+    <span class="modal-tag">${tag}</span>
+    <h3>${title}</h3>
+    ${period}
+    <h4>Overview</h4>
+    <p>${data.brief}</p>
+    <h4>Highlights</h4>
+    <p>${data.points.map(p => `• ${p}`).join('<br>')}</p>
+    <h4>${type === 'publication' ? 'Focus Areas' : 'Tools & Skills'}</h4>
+    <div class="modal-chip-row">${data.tools.map(t => `<span class="modal-chip">${t}</span>`).join('')}</div>
+  `;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+modalClose.addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Scroll-reveal animation for cards (progressive enhancement: content is visible by default,
+// only hidden once we're sure JS will reveal it again — with a safety timeout as backup)
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+  const revealEls = document.querySelectorAll('.reveal');
+  revealEls.forEach(el => el.classList.add('pre-reveal'));
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObserver.observe(el));
+  // safety net: if anything is missed (e.g. never scrolled into the observer's margin), reveal it anyway
+  setTimeout(() => revealEls.forEach(el => el.classList.add('in-view')), 2500);
+}
+
+
+</script>
+
+</body>
+</html>
